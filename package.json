@@ -1,0 +1,33 @@
+{
+  "name": "rtb-dashboard-e2e-smoke-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"cypress/**/*.{js,json}\" && prettier --write \"cypress/**/**/*.{js,json}\"",
+    "copy:e2e:config": "cp cypress.config.e2e.js cypress.config.js",
+    "copy:smoke:config": "cp cypress.config.smoke.js cypress.config.js",
+    "copy:local:env": "cp cypress.env.local.json cypress.env.json",
+    "copy:prod:env": "cp cypress.env.prod.json cypress.env.json",
+    "cy:open:local": "npm run copy:e2e:config && npm run copy:local:env && npx cypress open --env type=actual --config baseUrl=http://-----,fixturesFolder=cypress/fixtures/local",
+    "cy:open:prod": "npm run copy:e2e:config && npm run copy:prod:env && npx cypress open --env type=actual --config baseUrl=https://-----.com,fixturesFolder=cypress/fixtures/prod",
+    "cy:run:local": "npm run copy:e2e:config && npm run copy:local:env && npx cypress run --env type=actual --config baseUrl=http://------,fixturesFolder=cypress/fixtures/local",
+    "cy:run:prod": "npm run copy:e2e:config && npm run copy:prod:env && npx cypress run --env type=actual  --config baseUrl=https://------,fixturesFolder=cypress/fixtures/prod",
+    "cy:smoke": "npm run copy:smoke:config && npm run copy:prod:env && npx cypress run --env type=actual --config baseUrl=https://--------,fixturesFolder=cypress/fixtures/prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.17.2",
+    "glob": "^10.3.4",
+    "prettier": "3.0.3",
+    "uuid": "^9.0.0",
+    "cypress-visual-regression": "^3.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120,
+    "proseWrap": "never"
+  }
+}
